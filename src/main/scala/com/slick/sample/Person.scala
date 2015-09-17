@@ -1,5 +1,6 @@
 package com.slick.sample
 
+import com.typesafe.config.ConfigFactory
 import slick.dbio.DBIO
 import slick.driver.MySQLDriver.api._
 import slick.lifted.{ProvenShape, TableQuery}
@@ -19,6 +20,8 @@ class Person(tag: Tag) extends Table[(Int, String)](tag, "person") {
 
 object InsertPerson extends App {
 
+  val config = ConfigFactory.load()
+
   val persons = TableQuery[Person]
 
   val setup = DBIO.seq(
@@ -28,7 +31,7 @@ object InsertPerson extends App {
     persons += (3, "Bryan")
   )
 
-  val db = Database.forConfig("mysql")
+  val db = Database.forConfig(config.getString("running.db"))
 
   try {
 

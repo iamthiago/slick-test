@@ -1,5 +1,6 @@
 package com.slick.sample
 
+import com.typesafe.config.ConfigFactory
 import slick.driver.MySQLDriver.api._
 import slick.lifted.{ProvenShape, TableQuery}
 
@@ -10,6 +11,8 @@ import scala.concurrent.duration.Duration
  * Created by Thiago Pereira on 9/17/15.
  */
 object ProductBySupplier extends App {
+
+  val config = ConfigFactory.load()
 
   class Supplier(tag: Tag) extends Table[(Int, String)](tag, "supplier") {
     def supplierId = column[Int]("supplier_id", O.PrimaryKey)
@@ -54,7 +57,7 @@ object ProductBySupplier extends App {
     )
   )
 
-  val db = Database.forConfig("mysql")
+  val db = Database.forConfig(config.getString("running.db"))
 
   try {
 

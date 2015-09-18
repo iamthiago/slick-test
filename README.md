@@ -8,5 +8,12 @@ For mysql, you also need to create a db called mydb, otherwise you have to chang
 
 Don't forget to change the implicit import.
 
-- mysql: import slick.driver.MySQLDriver.api._
-- h2: import slick.driver.H2Driver.api._
+```
+import slick.driver.MySQLDriver.api._
+```
+
+or
+
+```
+import slick.driver.H2Driver.api._
+```

@@ -9,5 +9,6 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-nop" % "1.6.4",
   "com.h2database" % "h2" % "1.4.189",
   "mysql" % "mysql-connector-java" % "5.1.36",
-  "com.zaxxer" % "HikariCP-java6" % "2.3.9"
+  "com.zaxxer" % "HikariCP-java6" % "2.3.9",
+  "com.walmart" %% "common" % "0.0.1"
 )

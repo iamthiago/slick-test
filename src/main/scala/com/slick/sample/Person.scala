@@ -36,7 +36,11 @@ object InsertPerson extends App {
   try {
 
     Await.result(db.run(setup), Duration.Inf)
-    val result = Await.result(db.run(persons.result), Duration.Inf)
+    /*val result = Await.result(db.run(persons.result), Duration.Inf)
+    result.foreach(x => println("id: " + x._1 + " - name: " + x._2))*/
+
+    val q1: DBIO[Seq[(Int, String)]] = sql"""select * from person""".as[(Int, String)]
+    val result = Await.result(db.run(q1), Duration.Inf)
     result.foreach(x => println("id: " + x._1 + " - name: " + x._2))
 
   } finally db.close()
